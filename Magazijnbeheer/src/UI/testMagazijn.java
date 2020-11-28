@@ -24,7 +24,7 @@ public class testMagazijn {
 
         for (int x = 0; x < aantalProducten; x++) {
             int minStock = 1 + random.nextInt(4);
-            int maxStock = minStock + random.nextInt(20);
+            int maxStock = 20 + random.nextInt(20);
             boolean uniek = false;
             while (!uniek) {
                 int soortProduct = random.nextInt(5);
@@ -37,7 +37,6 @@ public class testMagazijn {
                 }
             }
         }
-
 
         Iterator iterator = producten.iterator();
         while (iterator.hasNext()) {

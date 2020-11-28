@@ -57,70 +57,24 @@ public class Product implements Comparable{
     public int beschikbareHoeveelheid(){
         int aantal = 0;
         for(Stock stockBewegingen: stockBewegingen){
-            if(stockBewegingen.getPositief() >= 1){
-                aantal += stockBewegingen.getPositief();
-            } else {
-                aantal -= stockBewegingen.getNegatief();
-            }
+            aantal += stockBewegingen.getTotaal();
         }
         return aantal;
     }
 
     public void addStockBeweging(Stock stock){
         String output = "\t* " + stock.toString();
-        int posTotaal = stock.getPositief() + beschikbareHoeveelheid();
-        int negTotaal = beschikbareHoeveelheid() - stock.getNegatief();
+        int totaal = beschikbareHoeveelheid() + stock.getTotaal();
         if(status != null){
-            String checkStatus = status.getStatus();
-            switch (checkStatus){
-                case "critical":
-                    if(stock.getPositief() >= 1 && posTotaal <= maxstock){
-                        stockBewegingen.add(stock);
-                        System.out.println(output + " stock aangepast");
-                    }
-                    if(stock.getPositief() >= 1 && posTotaal > maxstock){
-                        System.out.println(output + " verhoging geweigerd");
-                    }
-                    if(stock.getNegatief() > 0 && negTotaal >= criticalStock){
-                        stockBewegingen.add(stock);
-                        System.out.println(output + " stock aangepast");
-                    }
-                    else if(stock.getNegatief() > 0 && negTotaal <= criticalStock) {
-                        System.out.println(output +  " verlaging geweigerd");
-                    }
-                    break;
-                case "high":
-                    if(stock.getPositief() >= 1 && posTotaal <= maxstock){
-                        stockBewegingen.add(stock);
-                        System.out.println(output + " stock aangepast");
-                    }
-                    if(stock.getPositief() >= 1 && posTotaal > maxstock){
-                        System.out.println(output + " verhoging geweigerd");
-                    }
-                    if(stock.getNegatief() > 0 && negTotaal >= criticalStock){
-                        stockBewegingen.add(stock);
-                        System.out.println(output + " stock aangepast");
-                    }
-                    else if(stock.getNegatief() > 0 && negTotaal <= criticalStock) {
-                        System.out.println(output +  " verlaging geweigerd");
-                    }
-                    break;
-                /* default omdat low en normal zelfde zijn */
-                default:
-                    if(stock.getPositief() >= 1 && posTotaal <= maxstock) {
-                        stockBewegingen.add(stock);
-                        System.out.println(output + " stock aangepast");
-                    }
-                    if(stock.getPositief() >= 1 && posTotaal > maxstock){
-                        System.out.println(output + " verhoging geweigerd");
-                    }
-                    if(stock.getNegatief() > 0 &&  negTotaal >= criticalStock){
-                        stockBewegingen.add(stock);
-                        System.out.println(output + " stock aangepast");
-                    }
-                    else if(stock.getNegatief() > 0 &&  negTotaal <= criticalStock) {
-                        System.out.println(output +  " verlaging geweigerd");
-                    }
+            if(totaal >= criticalStock && totaal <= maxstock){
+                stockBewegingen.add(stock);
+                System.out.println(output + " stock aangepast");
+            }
+            if(totaal > maxstock){
+                System.out.println(output + " verhoging geweigerd");
+            }
+            else if(totaal <= criticalStock) {
+                System.out.println(output +  " verlaging geweigerd");
             }
             setStatus();
             System.out.println("\t  " + status);
