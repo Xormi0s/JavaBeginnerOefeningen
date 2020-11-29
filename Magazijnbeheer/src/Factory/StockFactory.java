@@ -1,6 +1,5 @@
 package Factory;
 
-import Models.Product;
 import Models.Stock;
 import Enum.StockBewegingInEnum;
 import Enum.StockBewegingUitEnum;
@@ -11,22 +10,22 @@ public class StockFactory {
         Stock stock = new Stock();
         switch (type){
             case 0:
-                stock.IN(StockBewegingInEnum.productie, aantal);
+                stock.IN(StockBewegingInEnum.Productie, aantal);
                 return stock;
             case 1:
-                stock.IN(StockBewegingInEnum.levering, aantal);
+                stock.IN(StockBewegingInEnum.Levering, aantal);
                 return stock;
             case 2:
-                stock.OUT(StockBewegingUitEnum.reservatie, aantal);
+                stock.OUT(StockBewegingUitEnum.Reservatie, aantal);
                 return stock;
             case 3:
-                stock.OUT(StockBewegingUitEnum.verkoop, aantal);
+                stock.OUT(StockBewegingUitEnum.Verkoop, aantal);
                 return stock;
             case 4:
-                stock.OUT(StockBewegingUitEnum.quarantaine, aantal);
+                stock.OUT(StockBewegingUitEnum.Quarantaine, aantal);
                 return stock;
             case 5:
-                stock.OUT(StockBewegingUitEnum.vernietiging, aantal);
+                stock.OUT(StockBewegingUitEnum.Vernietiging, aantal);
                 return stock;
             default:
                 return null;
@@ -35,7 +34,7 @@ public class StockFactory {
 
     public static Stock initieleStock(int aantal){
         Stock init = new Stock();
-        init.IN(StockBewegingInEnum.productie, aantal);
+        init.IN(StockBewegingInEnum.Productie, aantal);
         return init;
     }
 }

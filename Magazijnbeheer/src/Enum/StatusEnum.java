@@ -1,8 +1,8 @@
 package Enum;
 
 public enum StatusEnum {
-    critical,
-    low,
-    normal,
-    high;
+    Critical,
+    Low,
+    Normal,
+    High
 }

@@ -33,6 +33,7 @@ public class Stock {
         if(totaal >= 1){
             plusOfMin = "+";
         }
-        return plusOfMin + totaal + ", " + beweging + ",";
+        String output = plusOfMin + totaal + ", " + beweging + ",";
+        return output.toLowerCase();
     }
 }

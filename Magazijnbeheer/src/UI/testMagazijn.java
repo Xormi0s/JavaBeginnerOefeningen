@@ -23,14 +23,14 @@ public class testMagazijn {
         int aantalStock = 4;
 
         for (int x = 0; x < aantalProducten; x++) {
-            int minStock = 1 + random.nextInt(4);
-            int maxStock = 20 + random.nextInt(20);
+            int minStock = 2 + random.nextInt(10);
+            int maxStock = 20 + random.nextInt(50);
             boolean uniek = false;
             while (!uniek) {
                 int soortProduct = random.nextInt(5);
                 Product product = ProductFactory.createProduct(soortProduct, minStock, maxStock);
                 /* Initiële stock word direct bij aanmaak van een product gemaakt. Initstock is voor een willekeurige getal tussen min en max stock */
-                int initStock = product.getMinStock() + random.nextInt(maxStock - minStock);
+                int initStock = product.getMinStock() + (maxStock/2);
                 product.addStockBeweging(StockFactory.initieleStock(initStock));
                 if (producten.add(product)) {
                     uniek = true;
@@ -43,7 +43,7 @@ public class testMagazijn {
             Product productTemp = (Product) iterator.next();
             System.out.println(productTemp);
             for (int x = 0; x < aantalStock; x++) {
-                int randomAantal = 1 + random.nextInt(productTemp.getMaxstock());
+                int randomAantal = 1 + random.nextInt((productTemp.getMaxstock()/4));
                 productTemp.addStockBeweging(StockFactory.createStock(random.nextInt(6), randomAantal));
             }
         }

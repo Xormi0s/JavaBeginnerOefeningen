@@ -1,6 +1,6 @@
 package Enum;
 
 public enum StockBewegingInEnum{
-    levering,
-    productie;
+    Levering,
+    Productie;
 }

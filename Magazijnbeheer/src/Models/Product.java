@@ -1,5 +1,13 @@
 package Models;
 
+import Exceptions.stockCritException;
+import Exceptions.stockException;
+import Exceptions.stockHighException;
+
+import java.awt.*;
+import java.io.Console;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -62,25 +70,39 @@ public class Product implements Comparable{
         return aantal;
     }
 
-    public void addStockBeweging(Stock stock){
+    public void addStockBeweging(Stock stock) {
+
         String output = "\t* " + stock.toString();
         int totaal = beschikbareHoeveelheid() + stock.getTotaal();
-        if(status != null){
-            if(totaal >= criticalStock && totaal <= maxstock){
-                stockBewegingen.add(stock);
-                System.out.println(output + " stock aangepast");
-            }
-            if(totaal > maxstock){
-                System.out.println(output + " verhoging geweigerd");
-            }
-            else if(totaal <= criticalStock) {
-                System.out.println(output +  " verlaging geweigerd");
-            }
-            setStatus();
-            System.out.println("\t  " + status);
-        } else {
+        /* Initialisatie van stock */
+        if(status == null){
             stockBewegingen.add(stock);
+            /* Console output blokkeren door nieuwe printstream aan te maken. Dit zodat bij initialiseren van stock geen overbodige text word getoont */
+            PrintStream printStreamOriginal = System.out;
+            System.setOut(new PrintStream(new OutputStream(){
+                public void write(int b) {
+                }
+            }));
             setStatus();
+            /* Terug zetten naar originele printstream */
+            System.setOut(printStreamOriginal);
+        } else if (status != null) {
+            try{
+                if (totaal >= criticalStock && totaal <= maxstock) {
+                    stockBewegingen.add(stock);
+                    System.out.println(output + " stock aangepast");
+                }
+                if (totaal > maxstock) {
+                    throw new stockHighException(output);
+                } if (totaal < criticalStock) {
+                    throw new stockCritException(output);
+                }
+            } catch (stockException e){
+                System.out.println(e.getMessage());
+            } finally {
+                setStatus();
+                System.out.println("\t  " + status);
+            }
         }
     }
 
@@ -98,7 +120,7 @@ public class Product implements Comparable{
 
     @Override
     public String toString() {
-        return "Product: " + productOmschrijving;
+        return "Product: " + productOmschrijving + " --- min: " + minStock + " max: " + maxstock;
     }
 
     @Override

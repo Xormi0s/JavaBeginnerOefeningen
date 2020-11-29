@@ -21,22 +21,22 @@ public class productTest {
     @Test
     public void testStockBewegingCriticalOUT(){
         Stock stock = new Stock();
-        stock.OUT(StockBewegingUitEnum.verkoop,5);
+        stock.OUT(StockBewegingUitEnum.Verkoop,5);
         product.addStockBeweging(stock);
         String output = product.getStatus().toString();
         output = output.substring(14,22);
 
-        assertEquals("critical", output);
+        assertEquals("Critical", output);
         assertEquals(3,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingCriticalOUTGeweigerd(){
         Stock stock1 = new Stock();
-        stock1.OUT(StockBewegingUitEnum.verkoop,5);
+        stock1.OUT(StockBewegingUitEnum.Verkoop,5);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.OUT(StockBewegingUitEnum.verkoop, 6);
+        stock2.OUT(StockBewegingUitEnum.Verkoop, 6);
         product.addStockBeweging(stock2);
 
         assertEquals(3,product.beschikbareHoeveelheid());
@@ -45,30 +45,30 @@ public class productTest {
     @Test
     public void testStockBewegingCriticalIN(){
         Stock stock1 = new Stock();
-        stock1.OUT(StockBewegingUitEnum.verkoop,5);
+        stock1.OUT(StockBewegingUitEnum.Verkoop,5);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.IN(StockBewegingInEnum.levering, 8);
+        stock2.IN(StockBewegingInEnum.Levering, 8);
         product.addStockBeweging(stock2);
         String output = product.getStatus().toString();
         output = output.substring(14,17);
 
-        assertEquals("low", output);
+        assertEquals("Low", output);
         assertEquals(11,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingCriticalINGeweigerd(){
         Stock stock1 = new Stock();
-        stock1.OUT(StockBewegingUitEnum.verkoop,5);
+        stock1.OUT(StockBewegingUitEnum.Verkoop,5);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.IN(StockBewegingInEnum.levering,30);
+        stock2.IN(StockBewegingInEnum.Levering,30);
         product.addStockBeweging(stock2);
         String output = product.getStatus().toString();
         output = output.substring(14,22);
 
-        assertEquals("critical", output);
+        assertEquals("Critical", output);
         assertEquals(3,product.beschikbareHoeveelheid());
     }
 
@@ -77,41 +77,41 @@ public class productTest {
         String output = product.getStatus().toString();
         output = output.substring(14,17);
 
-        assertEquals("low", output);
+        assertEquals("Low", output);
         assertEquals(8,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingLowIN(){
         Stock stock = new Stock();
-        stock.IN(StockBewegingInEnum.levering, 8);
+        stock.IN(StockBewegingInEnum.Levering, 8);
         product.addStockBeweging(stock);
         String output = product.getStatus().toString();
         output = output.substring(14,20);
 
-        assertEquals("normal", output);
+        assertEquals("Normal", output);
         assertEquals(16,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingLowINGeweigerd(){
         Stock stock = new Stock();
-        stock.IN(StockBewegingInEnum.levering, 35);
+        stock.IN(StockBewegingInEnum.Levering, 35);
         product.addStockBeweging(stock);
         String output = product.getStatus().toString();
         output = output.substring(14,17);
 
-        assertEquals("low", output);
+        assertEquals("Low", output);
         assertEquals(8,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingLowOUT(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 4);
+        stock1.IN(StockBewegingInEnum.Levering, 4);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.OUT(StockBewegingUitEnum.verkoop, 6);
+        stock2.OUT(StockBewegingUitEnum.Verkoop, 6);
         product.addStockBeweging(stock2);
 
         assertEquals(6,product.beschikbareHoeveelheid());
@@ -120,10 +120,10 @@ public class productTest {
     @Test
     public void testStockBewegingLowOUTGeweigerd(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 4);
+        stock1.IN(StockBewegingInEnum.Levering, 4);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.OUT(StockBewegingUitEnum.verkoop, 10);
+        stock2.OUT(StockBewegingUitEnum.Verkoop, 10);
         product.addStockBeweging(stock2);
 
         assertEquals(12,product.beschikbareHoeveelheid());
@@ -132,52 +132,52 @@ public class productTest {
     @Test
     public void testStockBewegingNormal(){
         Stock stock = new Stock();
-        stock.IN(StockBewegingInEnum.levering, 8);
+        stock.IN(StockBewegingInEnum.Levering, 8);
         product.addStockBeweging(stock);
         String output = product.getStatus().toString();
         output = output.substring(14,20);
 
-        assertEquals("normal", output);
+        assertEquals("Normal", output);
         assertEquals(16,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingNormalIN(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 8);
+        stock1.IN(StockBewegingInEnum.Levering, 8);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.IN(StockBewegingInEnum.levering, 3);
+        stock2.IN(StockBewegingInEnum.Levering, 3);
         product.addStockBeweging(stock2);
         String output = product.getStatus().toString();
         output = output.substring(14,20);
 
-        assertEquals("normal", output);
+        assertEquals("Normal", output);
         assertEquals(19,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingNormalINGeweigerd(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 8);
+        stock1.IN(StockBewegingInEnum.Levering, 8);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.IN(StockBewegingInEnum.levering, 25);
+        stock2.IN(StockBewegingInEnum.Levering, 25);
         product.addStockBeweging(stock2);
         String output = product.getStatus().toString();
         output = output.substring(14,20);
 
-        assertEquals("normal", output);
+        assertEquals("Normal", output);
         assertEquals(16,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingNormalOUT(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 12);
+        stock1.IN(StockBewegingInEnum.Levering, 12);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.OUT(StockBewegingUitEnum.verkoop, 4);
+        stock2.OUT(StockBewegingUitEnum.Verkoop, 4);
         product.addStockBeweging(stock2);
 
         assertEquals(16,product.beschikbareHoeveelheid());
@@ -186,10 +186,10 @@ public class productTest {
     @Test
     public void testStockBewegingNormalOUTGeweigerd(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 12);
+        stock1.IN(StockBewegingInEnum.Levering, 12);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.OUT(StockBewegingUitEnum.verkoop, 25);
+        stock2.OUT(StockBewegingUitEnum.Verkoop, 25);
         product.addStockBeweging(stock2);
 
         assertEquals(20,product.beschikbareHoeveelheid());
@@ -198,52 +198,52 @@ public class productTest {
     @Test
     public void testStockBewegingHigh(){
         Stock stock = new Stock();
-        stock.IN(StockBewegingInEnum.levering, 20);
+        stock.IN(StockBewegingInEnum.Levering, 20);
         product.addStockBeweging(stock);
         String output = product.getStatus().toString();
         output = output.substring(14,18);
 
-        assertEquals("high", output);
+        assertEquals("High", output);
         assertEquals(28,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingHighIN(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 20);
+        stock1.IN(StockBewegingInEnum.Levering, 20);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.IN(StockBewegingInEnum.levering, 2);
+        stock2.IN(StockBewegingInEnum.Levering, 2);
         product.addStockBeweging(stock2);
         String output = product.getStatus().toString();
         output = output.substring(14,18);
 
-        assertEquals("high", output);
+        assertEquals("High", output);
         assertEquals(30,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingHighINGeweigerd(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 20);
+        stock1.IN(StockBewegingInEnum.Levering, 20);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.IN(StockBewegingInEnum.levering, 7);
+        stock2.IN(StockBewegingInEnum.Levering, 7);
         product.addStockBeweging(stock2);
         String output = product.getStatus().toString();
         output = output.substring(14,18);
 
-        assertEquals("high", output);
+        assertEquals("High", output);
         assertEquals(28,product.beschikbareHoeveelheid());
     }
 
     @Test
     public void testStockBewegingHighOUT(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 20);
+        stock1.IN(StockBewegingInEnum.Levering, 20);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.OUT(StockBewegingUitEnum.verkoop, 8);
+        stock2.OUT(StockBewegingUitEnum.Verkoop, 8);
         product.addStockBeweging(stock2);
 
         assertEquals(20,product.beschikbareHoeveelheid());
@@ -252,10 +252,10 @@ public class productTest {
     @Test
     public void testStockBewegingHighOUTGeweigerd(){
         Stock stock1 = new Stock();
-        stock1.IN(StockBewegingInEnum.levering, 20);
+        stock1.IN(StockBewegingInEnum.Levering, 20);
         product.addStockBeweging(stock1);
         Stock stock2 = new Stock();
-        stock2.OUT(StockBewegingUitEnum.verkoop, 30);
+        stock2.OUT(StockBewegingUitEnum.Verkoop, 30);
         product.addStockBeweging(stock2);
 
         assertEquals(28,product.beschikbareHoeveelheid());

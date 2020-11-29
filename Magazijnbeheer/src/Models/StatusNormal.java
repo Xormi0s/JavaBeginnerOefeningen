@@ -5,11 +5,11 @@ public class StatusNormal implements Status{
 
     @Override
     public String getStatus() {
-        return StatusEnum.normal.toString();
+        return StatusEnum.Normal.toString();
     }
 
     @Override
     public String toString() {
-        return "Stock status: " + StatusEnum.normal.toString();
+        return "Stock status: " + StatusEnum.Normal.toString();
     }
 }

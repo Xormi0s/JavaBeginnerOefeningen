@@ -5,11 +5,11 @@ public class StatusLow implements Status{
 
     @Override
     public String getStatus() {
-        return StatusEnum.low.toString();
+        return StatusEnum.Low.toString();
     }
 
     @Override
     public String toString() {
-        return "Stock status: " + StatusEnum.low.toString();
+        return "Stock status: " + StatusEnum.Low.toString() + ", extra levering dringend aangevraagd";
     }
 }
