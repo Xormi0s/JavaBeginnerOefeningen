@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/Immobiliën/Immobiliën.iml" filepath="$PROJECT_DIR$/Immobiliën/Immobiliën.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaBeginnerOefeningen.iml" filepath="$PROJECT_DIR$/JavaBeginnerOefeningen.iml" />
       <module fileurl="file://$PROJECT_DIR$/Magazijnbeheer/Magazijnbeheer.iml" filepath="$PROJECT_DIR$/Magazijnbeheer/Magazijnbeheer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/School/School.iml" filepath="$PROJECT_DIR$/School/School.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TemplateOefening/TemplateOefening.iml" filepath="$PROJECT_DIR$/TemplateOefening/TemplateOefening.iml" />
       <module fileurl="file://$PROJECT_DIR$/health/health.iml" filepath="$PROJECT_DIR$/health/health.iml" />
     </modules>
   </component>
