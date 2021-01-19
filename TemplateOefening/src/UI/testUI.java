@@ -1,15 +1,10 @@
 package UI;
 
 import Generator.GenerateData;
-import Models.Covid19;
-import Models.Persoon;
 import Models.Vacin;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Logger;
+
 
 public class testUI {
 
