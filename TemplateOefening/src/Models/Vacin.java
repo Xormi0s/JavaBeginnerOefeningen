@@ -1,7 +1,7 @@
 package Models;
 
 public abstract class Vacin {
-    Persoon persoon;
+    public Persoon persoon;
 
     public Vacin(Persoon persoon) {
         this.persoon = persoon;

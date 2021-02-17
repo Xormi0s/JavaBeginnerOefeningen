@@ -1,11 +1,14 @@
 package Models;
 
+import SMS.Observer;
+import SMS.Subject;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
 import java.util.Objects;
 
-public class Persoon {
+public class Persoon extends Observer {
     private String voornaam;
     private String achternaam;
     private LocalDate geboortedatum;
@@ -73,5 +76,10 @@ public class Persoon {
         return "Patient: " + voornaam + " " + achternaam
                 + "\n\tLeeftijd: " + (Period.between(geboortedatum, LocalDate.now())).getYears()
                 + "\n\tRIZIV: " + riziv;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println(voornaam + " " + achternaam + " -> sms bericht: " + message);
     }
 }
