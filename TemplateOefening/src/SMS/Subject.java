@@ -3,8 +3,8 @@ package SMS;
 import java.util.ArrayList;
 
 public class Subject {
-    private String message;
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private final String message;
+    private final ArrayList<Observer> observers = new ArrayList<Observer>();
 
     public Subject(String message) {
         this.message = message;

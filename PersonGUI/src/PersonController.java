@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,29 +10,45 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class PersonController {
 
+    private Locale locale = Locale.getDefault();
+    private Locale test = new Locale("nl");
+    private Locale locales[] = Calendar.getAvailableLocales();
+    ResourceBundle res = ResourceBundle.getBundle("MyResource", test);
+
+    @FXML
+    private Label lblVoornaam;
+    @FXML
+    private Label lblAchternaam;
+    @FXML
+    private Label lblGeboortedatum;
+    @FXML
+    private Label lblAdres;
+    @FXML
+    private Label lblPostcode;
+    @FXML
+    private Label lblGemeente;
     @FXML
     private TextField voornaamTextfield;
-
     @FXML
     private TextField achternaamTextfield;
-
     @FXML
     private DatePicker GeboortedatumDatepicker;
-
     @FXML
     private TextField adresTextfield;
-
     @FXML
     private TextField postcodeTextfield;
-
     @FXML
     private TextField gemeenteTextfield;
-
     @FXML
     private Label infoLabel;
+    @FXML
+    private ComboBox cboTaal;
 
     @FXML
     void zoekButtonPressed(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -81,4 +98,21 @@ public class PersonController {
         gemeenteTextfield.setText("");
     }
 
+    public void initialise(){
+        for (int i = 0; i < locales.length; i++)
+            cboTaal.getItems().add(locales[i].getDisplayName());
+    }
+
+    @FXML
+    void changeLanguage(ActionEvent event){
+        locale = locales[cboTaal.getSelectionModel().getSelectedIndex()];
+        res = ResourceBundle.getBundle("MyResource", locale);
+
+        lblVoornaam.setText(res.getString("voornaam"));
+        lblAchternaam.setText(res.getString("achternaam"));
+        lblAdres.setText(res.getString("adres"));
+        lblGeboortedatum.setText(res.getString("geboortedatum"));
+        lblGemeente.setText(res.getString("gemeente"));
+        lblPostcode.setText(res.getString("postcode"));
+    }
 }

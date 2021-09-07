@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class DummyPersonen {
-    private static String[] voornamen = {"Jonas", "Ellen", "Bram", "Lisa", "Kevin", "Lore", "Tom", "Lies", "Thomas", "Anais"};
-    private static String[] achternamen = {"Bourguignon", "Hermans", "Vandenbroeck", "Alaerts", "Bogaerts", "Tuts", "Vanherwegen", "Deroost", "Andries"};
-    private static Random random = new Random();
+    private static final String[] voornamen = {"Jonas", "Ellen", "Bram", "Lisa", "Kevin", "Lore", "Tom", "Lies", "Thomas", "Anais"};
+    private static final String[] achternamen = {"Bourguignon", "Hermans", "Vandenbroeck", "Alaerts", "Bogaerts", "Tuts", "Vanherwegen", "Deroost", "Andries"};
+    private static final Random random = new Random();
 
     public static String getVoornaam(){
         return voornamen[random.nextInt(voornamen.length)];
